@@ -15,16 +15,23 @@ class SiteController extends Controller
 {
     public function behaviors()
     {
+        // ? - не авторизованный
+        // @ - авторизованный
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'about'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
-                        'allow' => false,
+                        'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['about'],
+                        'roles' => ['?']
+                    ]
                 ],
             ],
             'verbs' => [
@@ -51,6 +58,8 @@ class SiteController extends Controller
 
     public function actionIndex()
 	{
+//        VarDumper::dump(\Yii::$app->user);
+
 		$query = News::find();
 
 		$pagination = new Pagination([
