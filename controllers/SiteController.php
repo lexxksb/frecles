@@ -3,12 +3,13 @@
 namespace app\controllers;
 
 use app\models\News;
+use app\models\NewsForm;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -20,18 +21,18 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'about'],
+                'only' => ['logout', 'addnews'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'addnews'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                    [
-                        'allow' => true,
-                        'actions' => ['about'],
-                        'roles' => ['?']
-                    ]
+//                    [
+//                        'allow' => false,
+//                        'actions' => ['addnews'],
+//                        'roles' => ['?']
+//                    ]
                 ],
             ],
             'verbs' => [
@@ -97,26 +98,40 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+    public function actionAddnews(){
 
-            return $this->refresh();
+        $model = new NewsForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $news = new News();
+            $news->setAttributes(\Yii::$app->request->post('NewsForm'), false);
+            $news->save();
+//            return $this->render('addNews', ['model' => $model]);
+            return $this->goHome();
         } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
+            return $this->render('addNews', ['model' => $model]);
         }
     }
 
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+//    public function actionContact()
+//    {
+//        $model = new ContactForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+//            Yii::$app->session->setFlash('contactFormSubmitted');
+//
+//            return $this->refresh();
+//        } else {
+//            return $this->render('contact', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
+
+//    public function actionAbout()
+//    {
+//        return $this->render('about');
+//    }
 }

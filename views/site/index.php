@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 ?>
 <h1>События</h1>
+<?= Html::a("Добавить событие", ["/site/addnews"]) ?>
 <ul>
 	<?php foreach ($news as $new): ?>
 		<li>
