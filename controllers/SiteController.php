@@ -6,7 +6,6 @@ use app\models\News;
 use app\models\NewsForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -59,12 +58,10 @@ class SiteController extends Controller
 
     public function actionIndex()
 	{
-//        VarDumper::dump(\Yii::$app->user);
-
 		$query = News::find();
 
 		$pagination = new Pagination([
-			'defaultPageSize' => 5,
+			'defaultPageSize' => 10,
 			'totalCount' => $query->count(),
 		]);
 
@@ -109,7 +106,6 @@ class SiteController extends Controller
             $news = new News();
             $news->setAttributes(\Yii::$app->request->post('NewsForm'), false);
             $news->save();
-//            return $this->render('addNews', ['model' => $model]);
             return $this->goHome();
         } else {
             return $this->render('addNews', ['model' => $model]);

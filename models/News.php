@@ -14,7 +14,7 @@ class News extends ActiveRecord{
 
 		if (parent::beforeSave($insert)) {
 			if($this->date){
-				$this->date = date("Y-m-d", strtotime($this->date));
+				$this->date = date("Y-m-d H:i:00", strtotime($this->date));
 			}
 			return true;
 		} else {

@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\jui\DatePicker;
 use letyii\tinymce\Tinymce;
+use dosamigos\datetimepicker\DateTimePicker;
 ?>
 
-<?= Html::errorSummary($model->getErrors(), ['class' => 'errors']) ?>
+<?//= Html::errorSummary($model->getErrors(), ['class' => 'errors']) ?>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -17,8 +17,14 @@ use letyii\tinymce\Tinymce;
 		]
 	]) ?>
 
-	<?= $form->field($model, 'date')->widget(DatePicker::className(),[
-		'dateFormat' => 'yyyy-MM-dd'
+	<?= $form->field($model, 'date')->widget(DateTimePicker::className(),[
+		'language' => 'ru',
+		'size' => 'ms',
+		'clientOptions' => [
+			'autoclose' => true,
+			'format' => 'dd.mm.yyyy HH:ii',
+			'todayBtn' => true
+		]
 	]) ?>
 
 	<div class="form-group">

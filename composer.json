@@ -19,7 +19,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "letyii/yii2-tinymce": "dev-master",
-        "yiisoft/yii2-jui": "*"
+        "2amigos/yii2-date-time-picker-widget" : "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -38,6 +38,9 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => [
+            'timeZone' => 'asia/yekaterinburg'
+        ],
         'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,
