@@ -20,17 +20,12 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'login', 'addnews', 'edit'],
+                'only' => ['logout', 'addnews', 'edit', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'addnews', 'edit'],
+                        'actions' => ['logout', 'addnews', 'edit', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['login'],
-                        'allow' => false,
-                        'roles' => ['@']
                     ]
                 ],
             ],
@@ -78,6 +73,10 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
+        if(!Yii::$app->user->isGuest){
+            return $this->goHome();
+        }
+
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
@@ -114,6 +113,11 @@ class SiteController extends Controller
             return $this->render('addNews', ['model' => $news]);
         }
 
+    }
+
+    public function actionDelete($id){
+        News::findOne($id)->delete();
+        return $this->goHome();
     }
 
 //    public function actionContact()

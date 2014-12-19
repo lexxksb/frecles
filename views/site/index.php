@@ -14,10 +14,10 @@ use yii\widgets\LinkPager;
 		<div class="media-body">
 			<h2 class="media-heading"><?= Html::encode("{$new->title}") ?></h2>
 			<?php if(!Yii::$app->user->isGuest): ?>
-				<?= Html::a("Редактировать", ["/site/edit", "id" => $new->id]) ?>&nbsp;<?= Html::a("Удалить", ["/site/delete"]) ?>
+				<?= Html::a("Редактировать", ["/site/edit", "id" => $new->id]) ?>&nbsp;<?= Html::a("Удалить", ["/site/delete", "id" => $new->id], ['class' => 'confirmDelete']) ?>
 			<?php endif; ?>
 			<div>
-				<?= Yii::$app->formatter->asDate($new->date, "long") ?> в <?= Yii::$app->formatter->asTime($new->date, "medium") ?>
+				<?= Yii::$app->formatter->asDate($new->date, "long") ?> в <?= Yii::$app->formatter->asTime($new->date, "short") ?>
 			</div>
 			<?= $new->content ?>
 		</div>

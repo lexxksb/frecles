@@ -29,7 +29,7 @@ class NewsForm extends Model{
 		if (!$this->hasErrors()) {
 
 		}
-		//$this->addError($attribute, 'Iff error.');
+		$this->addError($attribute, 'Iff error.');
 	}
 
 	public function save(News $news){

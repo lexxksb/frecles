@@ -5,8 +5,6 @@ use letyii\tinymce\Tinymce;
 use dosamigos\datetimepicker\DateTimePicker;
 ?>
 
-<?//= Html::errorSummary($model->getErrors(), ['class' => 'errors']) ?>
-
 <?php $form = ActiveForm::begin(); ?>
 
 	<?= $form->field($model, 'title') ?>
