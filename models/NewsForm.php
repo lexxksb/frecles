@@ -32,4 +32,20 @@ class NewsForm extends Model{
 		//$this->addError($attribute, 'Iff error.');
 	}
 
+	public function save(News $news){
+
+		if($this->validate()){
+
+			$news->setAttributes($this->attributes, false);
+
+			if($news->save()) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		return false;
+	}
+
+
 }

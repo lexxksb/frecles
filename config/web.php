@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+//    'timeZone' => 'Asia/Yekaterinburg',
     'language' => 'ru',
     'components' => [
         'request' => [
@@ -39,7 +40,7 @@ $config = [
             ],
         ],
         'formatter' => [
-            'timeZone' => 'asia/yekaterinburg'
+            'timeZone' => 'asia/yekaterinburg',
         ],
         'db' => require(__DIR__ . '/db.php'),
     ],

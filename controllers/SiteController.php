@@ -20,18 +20,18 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'addnews'],
+                'only' => ['logout', 'login', 'addnews', 'edit'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'addnews'],
+                        'actions' => ['logout', 'addnews', 'edit'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-//                    [
-//                        'allow' => false,
-//                        'actions' => ['addnews'],
-//                        'roles' => ['?']
-//                    ]
+                    [
+                        'actions' => ['login'],
+                        'allow' => false,
+                        'roles' => ['@']
+                    ]
                 ],
             ],
             'verbs' => [
@@ -78,10 +78,6 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
@@ -101,15 +97,23 @@ class SiteController extends Controller
     public function actionAddnews(){
 
         $model = new NewsForm();
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $news = new News();
-            $news->setAttributes(\Yii::$app->request->post('NewsForm'), false);
-            $news->save();
+        if ($model->load(Yii::$app->request->post()) && $model->save(new News())) {
             return $this->goHome();
         } else {
             return $this->render('addNews', ['model' => $model]);
         }
+    }
+
+    public function actionEdit($id){
+
+        $news = News::findOne($id);
+        $model = new NewsForm();
+        if ($model->load(Yii::$app->request->post(), "News") && $model->save($news)) {
+            return $this->goHome();
+        } else {
+            return $this->render('addNews', ['model' => $news]);
+        }
+
     }
 
 //    public function actionContact()
@@ -126,8 +130,4 @@ class SiteController extends Controller
 //        }
 //    }
 
-//    public function actionAbout()
-//    {
-//        return $this->render('about');
-//    }
 }
