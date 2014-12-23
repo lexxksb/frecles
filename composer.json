@@ -1,7 +1,7 @@
 {
     "name": "yiisoft/yii2-app-basic",
     "description": "Yii 2 Basic Application Template",
-    "keywords": ["yii2", "framework", "basic", "application template"],
+    "keywords": ["yi", "framework", "basic", "application template"],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -19,7 +19,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "letyii/yii2-tinymce": "dev-master",
-        "2amigos/yii2-date-time-picker-widget" : "*"
+        "2amigos/yii2-date-time-picker-widget" : "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

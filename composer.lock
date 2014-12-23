@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3d2105f1d834f076f6d7cfde7100dcfb",
+    "hash": "022901bc74a567c9464e0d04773add81",
     "packages": [
         {
             "name": "2amigos/yii2-date-time-picker-widget",
-            "version": "0.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/2amigos/yii2-date-time-picker-widget.git",
-                "reference": "c52faf383a15e5666d00a08cc95f078fea7266e1"
+                "reference": "572e2448ba1cd207b339dd5d117e3d1d23f0bbc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-date-time-picker-widget/zipball/c52faf383a15e5666d00a08cc95f078fea7266e1",
-                "reference": "c52faf383a15e5666d00a08cc95f078fea7266e1",
+                "url": "https://api.github.com/repos/2amigos/yii2-date-time-picker-widget/zipball/572e2448ba1cd207b339dd5d117e3d1d23f0bbc3",
+                "reference": "572e2448ba1cd207b339dd5d117e3d1d23f0bbc3",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "widget",
                 "yii"
             ],
-            "time": "2014-04-03 16:49:44"
+            "time": "2014-06-24 14:28:07"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -980,7 +980,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "letyii/yii2-tinymce": 20
+        "letyii/yii2-tinymce": 20,
+        "2amigos/yii2-date-time-picker-widget": 20
     },
     "prefer-stable": false,
     "platform": {
