@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'Веснушки',
+                'brandLabel' => 'Группа "Веснушки"',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -35,9 +35,7 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-//                    ['label' => 'Главная', 'url' => ['/site/index']],
-//                    ['label' => 'About', 'url' => ['/site/about']],
-//                    ['label' => 'Contact', 'url' => ['/site/contact']],
+                    ['label' => 'События', 'url' => ['/news/list']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Вход', 'url' => ['/site/login']] :
                         ['label' => 'Выход (' . Yii::$app->user->identity->phone . ')',
@@ -58,8 +56,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
+            <p class="pull-left">Детский сад комбинированного вида №54 "Умка" - Группа "Веснушки" <?= date('Y') ?></p>
         </div>
     </footer>
 

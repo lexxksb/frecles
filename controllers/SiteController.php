@@ -2,14 +2,11 @@
 
 namespace app\controllers;
 
-use app\models\News;
-use app\models\NewsForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -20,10 +17,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'addnews', 'edit', 'delete'],
+                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'addnews', 'edit', 'delete'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ]
@@ -53,22 +50,7 @@ class SiteController extends Controller
 
     public function actionIndex()
 	{
-		$query = News::find();
-
-		$pagination = new Pagination([
-			'defaultPageSize' => 10,
-			'totalCount' => $query->count(),
-		]);
-
-		$news = $query->orderBy('date DESC')
-			->offset($pagination->offset)
-			->limit($pagination->limit)
-			->all();
-
-		return $this->render('index', [
-			'news' => $news,
-			'pagination' => $pagination
-		]);
+        return $this->render('index');
 	}
 
     public function actionLogin()
@@ -90,33 +72,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        return $this->goHome();
-    }
-
-    public function actionAddnews(){
-
-        $model = new NewsForm();
-        if ($model->load(Yii::$app->request->post()) && $model->save(new News())) {
-            return $this->goHome();
-        } else {
-            return $this->render('addNews', ['model' => $model]);
-        }
-    }
-
-    public function actionEdit($id){
-
-        $news = News::findOne($id);
-        $model = new NewsForm();
-        if ($model->load(Yii::$app->request->post(), "News") && $model->save($news)) {
-            return $this->goHome();
-        } else {
-            return $this->render('addNews', ['model' => $news]);
-        }
-
-    }
-
-    public function actionDelete($id){
-        News::findOne($id)->delete();
         return $this->goHome();
     }
 
