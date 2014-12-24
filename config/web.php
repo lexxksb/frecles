@@ -43,6 +43,16 @@ $config = [
             'timeZone' => 'asia/yekaterinburg',
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'assetManager' => [
+            'bundles' => [
+                'letyii\tinymce\TinymceAssets' => [
+                    'js' => [
+                        'tinymce/tinymce.min.js',
+                        'tinymce/langs/ru.js',
+                    ]
+                ]
+            ]
+        ]
     ],
     'params' => $params,
 ];
