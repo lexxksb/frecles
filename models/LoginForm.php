@@ -23,7 +23,10 @@ class LoginForm extends Model
         return [
             ['phone', 'required'],
             ['rememberMe', 'boolean'],
-            ['phone', 'validatePhone']
+//            ['phone', 'validatePhone']
+            ['phone', 'filter', 'filter' => function ($value) {
+                return trim(str_replace(["(",")"," ","-"], "", $value));
+            }],
         ];
     }
 
@@ -41,9 +44,8 @@ class LoginForm extends Model
      * @param array $params the additional name-value pairs given in the rule
      * @return bool
      */
-    public function validatePhone($attribute, $params)
-    {
-        return true;
+//    public function validatePhone($attribute, $params)
+//    {
 //        if (!$this->hasErrors()) {
 //            $user = $this->getUser();
 //
@@ -51,7 +53,7 @@ class LoginForm extends Model
 //                $this->addError($attribute, 'Incorrect phone or password.');
 //            }
 //        }
-    }
+//    }
 
     /**
      * Logs in a user using the provided phone and password.
@@ -59,8 +61,8 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+        if ($this->validate() && ($_user = $this->getUser()) && !empty($_user)) {
+            return Yii::$app->user->login($_user, $this->rememberMe ? 3600*24*30 : 0);
         } else {
             return false;
         }

@@ -35,7 +35,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * Finds user by phone
      *
-     * @param  string      $phone
+     * @param  string $phone
      * @return static|null
      */
     public static function findByPhone($phone)
