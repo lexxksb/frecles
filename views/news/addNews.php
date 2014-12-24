@@ -12,11 +12,17 @@ use dosamigos\datetimepicker\DateTimePicker;
 	<?= $form->field($model, 'content')->widget(Tinymce::className(),[
 		'configs' => [
 			'language' => "ru",
-//			'external_plugins' => [
-//				'external_filemanager_path' => "/filemanager/",
-//    			'filemanager_title' => "Responsive Filemanager",
-//				'filemanager' => '/filemanager/plugin.min.js'
-//			]
+			'height' => "340",
+			'plugins' => [
+				"responsivefilemanager"
+			],
+			'toolbar1' => 'responsivefilemanager',
+			'external_plugins' => [
+				'filemanager' => '/filemanager/plugin.min.js'
+			],
+			'external_filemanager_path' => "/filemanager/",
+			'filemanager_title' => "Файловый менеджер",
+			'filemanager_access_key' => 'LTP-1094Q-9B'
 		]
 	]) ?>
 

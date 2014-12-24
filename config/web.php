@@ -49,6 +49,7 @@ $config = [
                     'js' => [
                         'tinymce/tinymce.min.js',
                         'tinymce/langs/ru.js',
+                        'tinymce/plugins/responsivefilemanager/plugin.min.js'
                     ]
                 ]
             ]
