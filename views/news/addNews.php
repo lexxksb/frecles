@@ -14,9 +14,9 @@ use dosamigos\datetimepicker\DateTimePicker;
 			'language' => "ru",
 			'height' => "340",
 			'plugins' => [
-				"responsivefilemanager"
+				"responsivefilemanager link table paste"
 			],
-			'toolbar1' => 'responsivefilemanager',
+			'toolbar1' => '| responsivefilemanager | link unlink anchor |',
 			'external_plugins' => [
 				'filemanager' => '/filemanager/plugin.min.js'
 			],

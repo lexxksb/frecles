@@ -18,7 +18,7 @@
 				<?= Html::a("Редактировать", ["/news/edit", "id" => $new->id]) ?>&nbsp;<?= Html::a("Удалить", ["/news/delete", "id" => $new->id], ['class' => 'confirmDelete']) ?>
 			<?php endif; ?>
 			<div class="date">
-				<?= Yii::$app->formatter->asDate($new->date, "long") ?> в <span><?= Yii::$app->formatter->asTime($new->date, "short") ?></span>
+				<?= Yii::$app->formatter->asDate($new->date, "long") ?> в <span class="date"><?= Yii::$app->formatter->asTime($new->date, "short") ?></span>
 			</div>
 			<div class="content"><?= $new->content ?></div>
 		</div>

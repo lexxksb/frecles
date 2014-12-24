@@ -100,7 +100,7 @@ a.desc:after {
     font-size: 15px;
     font-weight: bold;
 }
-.date span{
+.date span.date{
     color: red;
     font-size: 17px;
 }
