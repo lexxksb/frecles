@@ -13,7 +13,9 @@
 	<a name="#event<?= Html::encode($new->id) ?>"></a>
 	<div class="media">
 		<div class="media-body">
-			<h3 class="media-heading"><?= Html::encode("{$new->title}") ?></h3>
+			<h3 class="media-heading">
+				<?= Html::a($new->title, ["news/view", "id" => $new->id]) ?>
+			</h3>
 			<?php if(!Yii::$app->user->isGuest): ?>
 				<?= Html::a("Редактировать", ["/news/edit", "id" => $new->id]) ?>&nbsp;<?= Html::a("Удалить", ["/news/delete", "id" => $new->id], ['class' => 'confirmDelete']) ?>
 			<?php endif; ?>

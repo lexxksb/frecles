@@ -50,6 +50,11 @@ class NewsController extends Controller{
 		]);
 	}
 
+	public function actionView($id){
+		$news = News::find($id)->one();
+		return $this->render('news', ['news' => $news]);
+	}
+
 	public function actionAdd(){
 
 		$model = new NewsForm();
