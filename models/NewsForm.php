@@ -9,10 +9,13 @@ class NewsForm extends Model{
 	public $title;
 	public $content;
 	public $date;
+	public $sendMail;
+	public $sendSms = 0;
 
 	public function rules(){
 		return [
 			[["title", "content", "date"], "required"],
+			[["sendMail", 'sendSms'], 'boolean']
 //			["date", 'validateDate']
 		];
 	}
@@ -21,7 +24,9 @@ class NewsForm extends Model{
 		return [
 			'title' => 'Заголовок',
 			'content' => 'Событие',
-			'date' => 'Дата'
+			'date' => 'Дата',
+			'sendMail' => 'Сделать рассылку по Email',
+			'sendSms' => "Сделать рассылку по SMS"
 		];
 	}
 
@@ -35,14 +40,8 @@ class NewsForm extends Model{
 	public function save(News $news){
 
 		if($this->validate()){
-
 			$news->setAttributes($this->attributes, false);
-
-			if($news->save()) {
-				return true;
-			}else {
-				return false;
-			}
+			return $news->save();
 		}
 		return false;
 	}

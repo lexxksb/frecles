@@ -36,6 +36,15 @@ use dosamigos\datetimepicker\DateTimePicker;
 		]
 	]) ?>
 
+	<?php if(!empty($model->sendMail)){ ?>
+		<p>Рассылка на email сделана</p>
+		<?= $form->field($model, 'sendMail')->hiddenInput() ?>
+	<?php }else{ ?>
+		<?= $form->field($model, 'sendMail')->checkbox() ?>
+	<?php } ?>
+
+	<?= $form->field($model, 'sendSms')->checkbox() ?>
+
 	<div class="form-group">
 		<?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
 	</div>

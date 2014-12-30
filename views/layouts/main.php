@@ -38,7 +38,7 @@ AppAsset::register($this);
                     ['label' => 'События', 'url' => ['/news/list']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Вход', 'url' => ['/site/login']] :
-                        ['label' => 'Выход (' . Yii::$app->user->identity->phone . ')',
+                        ['label' => 'Выход (' . Yii::$app->user->identity->name . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],

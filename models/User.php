@@ -8,6 +8,8 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public $phone;
     public $authKey;
     public $accessToken;
+    public $name;
+    public $email;
 
     /**
      * @inheritdoc
