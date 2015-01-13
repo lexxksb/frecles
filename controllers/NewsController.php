@@ -70,8 +70,6 @@ class NewsController extends Controller{
 		$model = new NewsForm();
 		$news = News::findOne($id);
 
-		var_dump($model);
-
 		if ($model->load(Yii::$app->request->post(), "News") && $model->save($news)) {
 			return $this->goHome();
 		} else {

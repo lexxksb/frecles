@@ -10,6 +10,16 @@ class News extends ActiveRecord{
 		return 'news';
 	}
 
+	public function attributeLabels(){
+		return [
+			'title' => 'Заголовок',
+			'content' => 'Событие',
+			'date' => 'Дата',
+			'email' => 'Сделать рассылку по Email',
+			'sms' => "Сделать рассылку по SMS"
+		];
+	}
+
 	public function beforeSave($insert){
 
 		if (parent::beforeSave($insert)) {
