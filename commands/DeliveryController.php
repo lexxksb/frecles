@@ -18,16 +18,26 @@ class DeliveryController extends Controller{
      */
     public function actionIndex($inMail = true, $inSms = true){
 
+        $users = Yii::$app->params["users"];
+
         if($inMail){
 
-            $news = News::findAll(["email" => 1]);
+            $news = News::find()
+                ->where(['email' => 1])
+                ->andWhere(["sentEmail" => 0])
+                ->all();
 
-            Yii::$app->mailer->compose('news')
-                ->setFrom(Yii::$app->params["adminEmail"])
-                ->setTo("lexxksb@gmail.com")
-                ->setSubject("Это текст")
-                ->send();
-
+            foreach ($news as $_news) {
+                foreach($users as $user){
+                    Yii::$app->mailer->compose('news', ["news" => $_news])
+                        ->setFrom(Yii::$app->params["adminEmail"])
+                        ->setTo($user["email"])
+                        ->setSubject("На сайте группы 'Веснушки' есть новое событие")
+                        ->send();
+                }
+                $_news->sentEmail = 1;
+                $_news->save();
+            }
 
         }
 

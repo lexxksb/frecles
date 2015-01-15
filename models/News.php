@@ -33,4 +33,13 @@ class News extends ActiveRecord{
 
 	}
 
+	public function toEmailSend(){
+	}
+
+	public function getToSend(){
+
+		return $this->hasMany(News::className(), [])->where("sendMail == 0");
+
+	}
+
 }

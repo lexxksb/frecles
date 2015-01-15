@@ -11,11 +11,14 @@ class NewsForm extends Model{
 	public $date;
 	public $email;
 	public $sms;
+	public $sentEmail = 0;
+	public $sentSms = 0;
 
 	public function rules(){
 		return [
 			[["title", "content", "date"], "required"],
-			[["email", 'sms'], 'boolean']
+			[["email", 'sms'], 'boolean'],
+			[["sentEmail", "sentSms"], "safe"]
 //			["date", 'validateDate']
 		];
 	}
