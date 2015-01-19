@@ -25,15 +25,10 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-//            'transport' => [
-//                'class' => 'Swift_SmtpTransport',
-//                'host' => 'smtp.yandex.ru',
-//                'username' => 'lexxksb@yandex.ru',
-//                'password' => 'OG8263raTG',
-//                'port' => '465',
-//                'encryption' => 'ssl', //tls or ssl
-//            ],
             'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+            ]
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
