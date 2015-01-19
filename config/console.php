@@ -25,6 +25,13 @@ return [
                 ],
             ],
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+            ]
+        ],
         'db' => $db,
     ],
     'params' => $params,
