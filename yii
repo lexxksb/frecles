@@ -25,6 +25,8 @@ if (file_exists($localFilename))
 
 unset($config["components"]["request"]);
 
+Yii::$classMap['SmtpApi'] = 'SmtpApi.php';
+
 $application = new yii\console\Application($config);
 $exitCode = $application->run();
 exit($exitCode);
