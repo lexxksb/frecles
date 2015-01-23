@@ -23,7 +23,8 @@ AppAsset::register($this);
 <body>
 
 <?php $this->beginBody() ?>
-    <div class="wrap">
+
+    <div class="wrap <?= Yii::$app->controller->id ?>">
         <?php
             NavBar::begin([
                 'brandLabel' => 'Группа "Веснушки"',
