@@ -82,6 +82,10 @@ class DeliveryController extends Controller{
 
             foreach ($news as $_news) {
 
+                $message = trim(strip_tags($_news["title"]));
+                $message = "Новое событие:".str_replace(["#","№","'",'"',"-","«","»","(",")",",",".",";","/",":","+","%","$"], "", $message);
+                $message = substr($message, 0, 69);
+
                 $smsXml = '<?xml version="1.0" encoding="UTF-8"?>
                         <SMS>
                             <operations>
@@ -93,7 +97,7 @@ class DeliveryController extends Controller{
                             </authentification>
                             <message>
                                 <sender>Freckles</sender>
-                                <text>Новое событие: '.$_news["title"].'</text>
+                                <text>Новое событие: '.$message.'</text>
                             </message>
                             <numbers>';
                 foreach($_users as $us) {
