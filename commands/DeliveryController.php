@@ -80,11 +80,13 @@ class DeliveryController extends Controller{
                 ->andWhere(["sentSms" => 0])
                 ->all();
 
+            Yii::info("Есть новые события на отправку. Всего: ".count($news), 'SMS');
+
             foreach ($news as $_news) {
 
                 $message = trim(strip_tags($_news["title"]));
                 $message = "Новое событие:".str_replace(["#","№","'",'"',"-","«","»","(",")",",",".",";","/",":","+","%","$"], "", $message);
-                $message = $this->shrinkStr($message, 0, 69);
+                $message = $this->shrinkStr($message, 69);
 
                 $smsXml = '<?xml version="1.0" encoding="UTF-8"?>
                         <SMS>
@@ -105,7 +107,7 @@ class DeliveryController extends Controller{
                 };
                 $smsXml .= '</numbers></SMS>';
 
-                var_dump($smsXml); die;
+                Yii::info($smsXml, 'SMS');
 
                 $Curl = curl_init();
                 $CurlOptions = [
@@ -130,9 +132,12 @@ class DeliveryController extends Controller{
                 if(!empty($resXml) && (int)$resXml->status > 0){
                     $_news->sentSms = 1;
                     $_news->save();
-                    echo PHP_EOL."Отправлено SMS: ".(int)$resXml->status.PHP_EOL;
+                    $successMessage = "Отправлено SMS: ".(int)$resXml->status;
+                    echo PHP_EOL.$successMessage.PHP_EOL;
+                    Yii::info($successMessage, 'SMS');
                 }else{
-                    throw new \Exception('Ошибка отправки SMS. Статус: '.(int)$resXml->status.PHP_EOL.$smsXml);
+                    throw new \Exception('Ошибка отправки SMS. Статус: '.(int)$resXml->status.PHP_EOL.$smsXml.PHP_EOL);
+                    Yii::info('Ошибка отправки SMS. Статус: '.(int)$resXml->status, 'SMS');
                 }
 
             }
