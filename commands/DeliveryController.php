@@ -118,7 +118,7 @@ class DeliveryController extends Controller{
                 ];
                 curl_setopt_array($Curl, $CurlOptions);
                 if(false === ($Result = curl_exec($Curl))) {
-                    throw new Exception('Http request failed');
+                    throw new \Exception('Http request failed');
                 }
 
                 curl_close($Curl);
@@ -130,7 +130,7 @@ class DeliveryController extends Controller{
                     $_news->save();
                     echo PHP_EOL."Отправлено SMS: ".(int)$resXml->status.PHP_EOL;
                 }else{
-                    throw new Exception('Ошибка отправки SMS. Статус: '.(int)$resXml->status);
+                    throw new \Exception('Ошибка отправки SMS. Статус: '.(int)$resXml->status);
                 }
 
             }
