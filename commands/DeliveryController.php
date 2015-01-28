@@ -84,7 +84,7 @@ class DeliveryController extends Controller{
 
                 $message = trim(strip_tags($_news["title"]));
                 $message = "Новое событие:".str_replace(["#","№","'",'"',"-","«","»","(",")",",",".",";","/",":","+","%","$"], "", $message);
-                $message = mb_substr($message, 0, 69);
+                $message = $this->shrinkStr($message, 0, 69);
 
                 $smsXml = '<?xml version="1.0" encoding="UTF-8"?>
                         <SMS>
@@ -138,4 +138,24 @@ class DeliveryController extends Controller{
         }
 
     }
+
+     /**
+     * Обрезает строку до последнего символа $shrinkTo, делая ее не длиннее $len
+     * Например: shrinkStr('Обрезает строку до', 10) = 'Обрезает'
+     * @param $str
+     * @param $len
+     * @param string $shrinkTo
+     * @param string $encoding
+     * @return string
+     */
+    private function shrinkStr($str, $len, $shrinkTo = ' ', $encoding = 'UTF-8')
+    {
+        if(mb_strlen($str, $encoding) > $len) {
+            $substring_limited = mb_substr($str, 0, $len, $encoding);
+            $str = mb_substr($substring_limited, 0, mb_strrpos($substring_limited, $shrinkTo, 0, $encoding), $encoding);
+        }
+        return $str;
+    }
+
+
 }
