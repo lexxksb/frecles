@@ -75,4 +75,12 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         return $this->authKey === $authKey;
     }
 
+    /**
+     * Проверка на право создавать, редактировать и удалять события
+     * @return bool
+     */
+    public static function canModerate(){
+        return in_array(\Yii::$app->user->id, [100, 101]) && !\Yii::$app->user->isGuest;
+    }
+
 }

@@ -4,11 +4,14 @@
 	$this->params['breadcrumbs'][] = $this->title;
 	use yii\helpers\Html;
 	use yii\widgets\LinkPager;
+	use app\models\User;
+	$canModerate = User::canModerate();
 ?>
 <h1><?=$this->title?></h1>
-<?php if(!Yii::$app->user->isGuest): ?>
+<?php if($canModerate): ?>
 	<div class="psevdoButton"><?= Html::a("Добавить событие", ["/news/add"]) ?></div>
 <?php endif; ?>
+
 <?php foreach ($news as $new): ?>
 	<a name="#event<?= Html::encode($new->id) ?>"></a>
 	<div class="media">
@@ -16,7 +19,7 @@
 			<h3 class="media-heading">
 				<?= Html::a($new->title, ["news/view", "id" => $new->id]) ?>
 			</h3>
-			<?php if(!Yii::$app->user->isGuest): ?>
+			<?php if($canModerate): ?>
 				<?= Html::a("Редактировать", ["/news/edit", "id" => $new->id]) ?>&nbsp;<?= Html::a("Удалить", ["/news/delete", "id" => $new->id], ['class' => 'confirmDelete']) ?>
 			<?php endif; ?>
 			<div class="date">
