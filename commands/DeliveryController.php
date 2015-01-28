@@ -130,7 +130,7 @@ class DeliveryController extends Controller{
                     $_news->save();
                     echo PHP_EOL."Отправлено SMS: ".(int)$resXml->status.PHP_EOL;
                 }else{
-                    throw new \Exception('Ошибка отправки SMS. Статус: '.(int)$resXml->status);
+                    throw new \Exception('Ошибка отправки SMS. Статус: '.(int)$resXml->status.PHP_EOL.$smsXml);
                 }
 
             }
