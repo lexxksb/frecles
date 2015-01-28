@@ -85,7 +85,7 @@ class DeliveryController extends Controller{
             foreach ($news as $_news) {
 
                 $message = trim(strip_tags($_news["title"]));
-                $message = "Новое событие:".str_replace(["#","№","'",'"',"-","«","»","(",")",",",".",";","/",":","+","%","$"], "", $message);
+                $message = "Веснушки:".str_replace(["#","№","'",'"',"-","«","»","(",")",",",".",";","/",":","+","%","$"], "", $message);
                 $message = $this->shrinkStr($message, 69);
 
                 $smsXml = '<?xml version="1.0" encoding="UTF-8"?>
