@@ -105,6 +105,8 @@ class DeliveryController extends Controller{
                 };
                 $smsXml .= '</numbers></SMS>';
 
+                var_dump($smsXml); die;
+
                 $Curl = curl_init();
                 $CurlOptions = [
                     CURLOPT_URL => 'http://my.atompark.com/sms/xml.php',
