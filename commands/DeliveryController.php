@@ -98,7 +98,7 @@ class DeliveryController extends Controller{
                                 <password>'.Yii::$app->params["smsPassword"].'</password>
                             </authentification>
                             <message>
-                                <sender>Freckles</sender>
+                                <sender>freckles</sender>
                                 <text>'.$message.'</text>
                             </message>
                             <numbers>';
